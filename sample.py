@@ -10,11 +10,13 @@ def process_ticket(ticket):
             if len(ticket.balls) == 0:
                 ordinal = "1st"
                 message = base_message
-            elif len(ticket.balls) == 1:
-                ordinal = "2nd"
-                message = "{} excluding {}".format(base_message, str(ticket))
             else:
-                ordinal = "{}th".format(len(ticket.balls) + 1)
+                if len(ticket.balls) == 1:
+                    ordinal = "2nd"
+                elif len(ticket.balls) == 2:
+                    ordinal = "3rd"
+                else:
+                    ordinal = "{}th".format(len(ticket.balls) + 1)
                 message = "{} excluding {}".format(base_message, str(ticket))
         else:
             message = "1 thru {}".format(powerball.MAX_POWERBALL)
